@@ -5,6 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
+// store
+import { connectToStore, StoreConnectedToRouter } from './stores/store-router-connector';
+import { EffectsModule } from '@ngrx/effects';
+import { reducer } from './stores';
+import { RouterModule } from '@angular/router';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+
 import { AppComponent } from './containers/app.component';
 import { ComponentsModule } from './components';
 
@@ -17,7 +25,12 @@ import { ComponentsModule } from './components';
     ComponentsModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    StoreConnectedToRouter.provideStore(reducer),
+    RouterModule.forRoot(connectToStore([
+
+    ]), {enableTracing: false}),
+    StoreDevtoolsModule.instrumentOnlyWithExtension(),
   ],
   providers: [],
   bootstrap: [AppComponent]
