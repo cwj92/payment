@@ -1,0 +1,8 @@
+<form novalidate [formGroup]="bookingForm" (ngSubmit)="onSubmitBooking(bookingForm.value)">
+  <input type="number" formControlName="totalAmount">
+  <div formArrayName="payments">
+    <div *ngFor="let payment of payments.controls; let i=index" [formGroupName]="i">
+      <input type="number" formControlName="amount">
+    </div>
+  </div>
+</form>

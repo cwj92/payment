@@ -15,10 +15,12 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './containers/app.component';
 import { ComponentsModule } from './components';
+import { BookingComponent } from './containers/booking/booking.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BookingComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,7 @@ import { ComponentsModule } from './components';
     HttpModule,
     StoreConnectedToRouter.provideStore(reducer),
     RouterModule.forRoot(connectToStore([
-
+      { path: 'booking', component: BookingComponent }
     ]), {enableTracing: false}),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
   ],
